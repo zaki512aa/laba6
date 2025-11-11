@@ -8,7 +8,6 @@ int main() {
     int numbers[] = {-5, 3, -2, 8, 1, -7, 10, -4};
     fout.write((char*)numbers, sizeof(numbers));
     fout.close();
-
     ifstream fin("numbers.bin", ios::binary);
 
     int number;
