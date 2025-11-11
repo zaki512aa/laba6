@@ -1,0 +1,34 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+
+    ofstream fout("numbers.bin", ios::binary);
+    int numbers[] = {-5, 3, -2, 8, 1, -7, 10, -4};
+    fout.write((char*)numbers, sizeof(numbers));
+    fout.close();
+
+    ifstream fin("numbers.bin", ios::binary);
+
+    int number;
+    int min_positive = -1;
+    
+    while (fin.read((char*)&number, sizeof(number))) {
+        if (number > 0) {
+            if (min_positive == -1 || number < min_positive) {
+                min_positive = number;
+            }
+        }
+    }
+
+    fin.close();
+
+    if (min_positive == -1) {
+        cout << "Polozhitelnih chisel ne naideno" << endl;
+    } else {
+        cout << "Minimalnoe polozhitelnoe chislo: " << min_positive << endl;
+    }
+
+    return 0;
+}
